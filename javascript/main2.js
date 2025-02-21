@@ -15,17 +15,18 @@ async function getTopRatedMovie()
 getTopRatedMovie(); 
 
 
-function displayTopRatedMovie()
-{
-    let box = `` ; 
-    for(let i =0 ; i< topRatedContainerMovie.length ; i++)
-    {
-        box+= ` <div class="col-md-3 mt-3">
-                    <img class="w-100" src=${baseUrlMovie + topRatedContainerMovie[i].poster_path} alt="tv show">
-                    <h4 class="text-warning">${topRatedContainerMovie[i].vote_average}</h4>
-                    <h3 class="text-danger">${topRatedContainerMovie[i].title}</h3>
-                    <p class="text-muted">${topRatedContainerMovie[i].overview}</p>
-                </div>`
+function displayTopRatedMovie() {
+    let box = ``; 
+    for (let i = 0; i < topRatedContainerMovie.length; i++) {
+        let vote = Math.floor(topRatedContainerMovie[i].vote_average); 
+
+        box += ` 
+            <div class="col-md-3 mt-3">
+                <img class="w-100" src="${baseUrlMovie + topRatedContainerMovie[i].poster_path}" alt="movie">
+                <h4 class="text-warning">${vote} &#9733;</h4>  <!-- Unicode Star -->
+                <h3 class="text-danger">${topRatedContainerMovie[i].title}</h3>
+                <p class="text-muted">${topRatedContainerMovie[i].overview}</p>
+            </div>`;
     }
-    document.getElementById('posts').innerHTML = box ; 
+    document.getElementById('posts').innerHTML = box;
 }
